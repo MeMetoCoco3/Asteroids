@@ -16,7 +16,7 @@ def main():
     g_draw = pygame.sprite.Group()
     g_update = pygame.sprite.Group()
     g_asteroids = pygame.sprite.Group()
-    g_asteroid_field = pygame.sprite.Group()
+    # g_asteroid_field = pygame.sprite.Group()
     g_shoot = pygame.sprite.Group()
 
     Player.containers = (g_draw, g_update)
@@ -38,6 +38,11 @@ def main():
         for asteroid in g_asteroids:
             if asteroid.check_collision(pl):
                 exit(1)
+            for bullet in g_shoot:
+                if asteroid.check_collision(bullet):
+                    # Kill is a built in feature in Pygame
+                    asteroid.split()
+                    bullet.kill()
 
         # Update
         for thing in g_update:
