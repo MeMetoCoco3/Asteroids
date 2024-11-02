@@ -7,10 +7,14 @@ def main():
     screen = pygame.display.set_mode(
         size=(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
     )
+    clock = pygame.time.Clock()
+    dt = 0
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        # Tick cuts top fps to 60 and returns delta in ms
+        dt = clock.tick(60) / 1000
 
     print("Starting asteroids!")
     print(f"Screen width: {constants.SCREEN_WIDTH}")
